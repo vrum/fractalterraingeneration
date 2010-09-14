@@ -1,0 +1,19 @@
+#summary Explanation of Value Noise.
+
+= Introduction =
+Value noise is the first algorithm I attempt for this project. It promises great quality with high speed. As it turns out only the former is true, but the algorithm stacks up well against my personal favorite, the Diamond-Square algorithm.
+
+
+
+= Contents =
+  # Algorithm
+  # Implementation
+  # Comparison
+    # Pros
+    # Cons
+  # Ideas
+  # Conclusions
+
+
+= Algorithm = 
+Value noise is created by summing together interpolated values of noise at various amplitudes and frequencies. That may sound complicated, but it's really quite simple. If you take a few points of noise (random values) and draw smooth lines between you can get some random looking hills. No details, but big picture. Suppose you did this a few times with more points each time and smaller values. You'd get tamer and tamer lines with more detail each time. Add all these lines together and you get the big picture plus the little details plus everything in-between.  
