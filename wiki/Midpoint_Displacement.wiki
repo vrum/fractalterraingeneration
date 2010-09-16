@@ -4,13 +4,7 @@
 Midpoint displacement is the second algorithm I have implemented for this project. It combines blazing speed with ease of implementation. However, in native form visual artifacts are abundant, although with a few tweaks these can be mostly eliminated.
 
 = Contents =
-  # Algorithm
-  # Implementation
-  # Comparison
-    # Pros
-    # Cons
-  # Ideas
-  # Conclusions
+<wiki:toc max_depth="3" />
 
 
 = Algorithm = 
