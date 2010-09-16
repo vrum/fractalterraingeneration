@@ -76,12 +76,13 @@ Essentially, I seed the RNG built into C++ each time the function is called. At 
   * Very good detail, and the amount of detail can be controlled.
   * No visible artifacts.
   * Nearly nothing _has_ to be stored in memory, although it can be.
-  * If each pixel is rendered individually, the program is not limited by the amount of RAM it is allocated (float[4000][4000] won't work...)
+  * If each pixel is rendered individually, the program is not limited by the amount of RAM it is allocated (4000 x 4000 floats won't work...)
 
 == Cons ==
   * Much, much slower than midpoint displacement.
   * More complex to implement than midpoint displacement.
   * You can't 'paint' values in like midpoint displacement (I want a mountain right... here.)
+  * Without having the entire map in memory before printing, it's impossible to determine the absolute maximum and minimum values. That means there is a chance no white mountains will appear, and even a small chance there will be absolutely no oceans. If stored in memory first, the only advantage it has over midpoint-displacement is the lack of visual artifacts.
 
 = Ideas =
 Because each pixel can be rendered to theoretically infinite detail (just keep increasing the octaves), and any point can be calculated independently of other points, one could make an interactive program that lets you 'zoom and enhance' into finer and finer detail. One could also make several passes at an image, rendering a few octaves at a time, creating a more and more detailed image while improving speed if done in real-time.
