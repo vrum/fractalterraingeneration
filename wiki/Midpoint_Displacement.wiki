@@ -40,7 +40,7 @@ http://gimli.morningside.edu/~tra001/Algorithms/MidpointDisplacement/modified.pn
 
 While artifacts can still be found, from 100% they are generally too small to notice.
 
-One last point concerning the algorithm must be made. You may have noticed that the example above is 9 x 9 pixels. This is necessary. In fact, because of the dividing nature of the algorithm, the map must be {{{2^x + 1}}} pixels wide and tall. It is possible to make rectangular maps, but they require extra setup. So maps must be 65x65, 129x129, 257x257, 513x513, 1025x1025, 2049x2049, etc.
+One last point concerning the algorithm must be made. You may have noticed that the example above is 9 x 9 pixels. This is necessary. In fact, because of the dividing nature of the algorithm, the map must be 2^x^ + 1 pixels wide and tall. It is possible to make rectangular maps, but they require extra setup. So maps must be 65x65, 129x129, 257x257, 513x513, 1025x1025, 2049x2049, etc.
 
 = Comparison =
 
@@ -54,7 +54,7 @@ One last point concerning the algorithm must be made. You may have noticed that 
   * The map *must* be stored in memory, because pixels reference other pixels.
   * Because it must be stored in memory, memory becomes a constraint. Most OS's won't allow an image beyond 1025 x 1025 without some fancy footwork (Windows won't allow one beyond 513 x 513).
   * The vanilla form has horrible visual artifacts, but this can be avoided.
-  * The map must have a width and height of {{{2^x + 1}}} pixels.
+  * The map must have a width and height of 2^x^ + 1 pixels.
 
 = Ideas =
 Because this code is so fast, it could be used in real-time to create maps for games on-the-fly. At some point I would like to implement a 4-dimensional version of this or Diamond-Square (with the fourth dimension being time). This would create an evolving landscape, or changing clouds. However Diamond-Square may be difficult to extend into another dimension. Regular midpoint displacement may be simple enough to implement in 4D.
