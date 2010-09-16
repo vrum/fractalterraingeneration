@@ -39,13 +39,13 @@ map[x][y]=total;
 
 There are four terms here: octaves, frequency, amplitude, and persistence. 
 
-Octaves are how many layers you are putting together. If you start with big features, the number of octaves determines how detailed the map will look.
+*Octaves* are how many layers you are putting together. If you start with big features, the number of octaves determines how detailed the map will look.
 
-The frequency of a layer is how many points fit into the space you've created. So for the mountain scale, you only need a few points, but at the rock scale you may need hundreds of points. In the code above, I start with a small frequency (which equates to large features) and move to higher frequencies which produce smaller details.
+The *frequency* of a layer is how many points fit into the space you've created. So for the mountain scale, you only need a few points, but at the rock scale you may need hundreds of points. In the code above, I start with a small frequency (which equates to large features) and move to higher frequencies which produce smaller details.
 
-The amplitude is how tall the features should be. Frequency determines the width of features, amplitude determines the height. Each octave the amplitude shrinks, meaning small features are also short. This doesn't have to be the case, but for this case it makes pleasing maps.
+The *amplitude* is how tall the features should be. Frequency determines the width of features, amplitude determines the height. Each octave the amplitude shrinks, meaning small features are also short. This doesn't have to be the case, but for this case it makes pleasing maps.
 
-Persistence is what makes the amplitude shrink (or not shrink). I use a persistence of 0.65. If it is higher then the amplitude will barely shrink, and maps get crazy. Too low and the details become miniscule, and the map looks washed out.
+*Persistence* is what makes the amplitude shrink (or not shrink). I use a persistence of 0.65. If it is higher then the amplitude will barely shrink, and maps get crazy. Too low and the details become miniscule, and the map looks washed out.
 
 The algorithm itself has two parts that aren't very intuitive: the smoothing (or interpolation) function and the random number generator (RNG).
 
