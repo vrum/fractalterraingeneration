@@ -6,13 +6,7 @@ Value noise is the first algorithm I attempt for this project. It promises great
 
 
 = Contents =
-  # Algorithm
-  # Implementation
-  # Comparison
-    # Pros
-    # Cons
-  # Ideas
-  # Conclusions
+<wiki:toc max_depth="3" />
 
 
 = Algorithm = 
