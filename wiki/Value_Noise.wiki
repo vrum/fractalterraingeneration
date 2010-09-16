@@ -68,7 +68,7 @@ float random(int x, int y){
 }
 }}}
 
-Essentially, I seed the RNG built into C++ each time the function is called. At the beginning of the program I create a global seed from a time function, so each map will be unique. Yet I also seed it with the x and y values (I use y * width so 2,3 is not the same as 3,2). rand() then creates a unique value. After that I just shrink it to size. It is important to note that some compilers have their own RNG, so this may not work for everyone. Visual C++ 2008 was especially troublesome, however GCC on Linux works perfectly.
+Essentially, I seed the RNG built into C++ each time the function is called. At the beginning of the program I create a global seed from a time function, so each map will be unique. Yet I also seed it with the x and y values (I use y times the width so 2,3 is not the same as 3,2). rand() then creates a unique value. After that I just shrink it to size. It is important to note that some compilers have their own RNG, so this may not work for everyone. Visual C++ 2008 was especially troublesome, however GCC on Linux works perfectly.
 
 = Comparison =
 
