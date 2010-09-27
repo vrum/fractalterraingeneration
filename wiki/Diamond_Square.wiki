@@ -1,7 +1,7 @@
-#summary Explanation of Midpoint Displacement.
+#summary Explanation of the Diamond-Square algorithm.
 
 = Introduction =
-Diamond-Square is an improvement of Midpoint_Displacement that attempts to combine the speed of Midpoint_Displacement with the quality of Value_Noise. 
+Diamond-Square is an improvement of Midpoint_Displacement that attempts to combine the speed of Midpoint_Displacement with the quality of Value_Noise. It ends up being very slightly slower than Midpoint_Displacement while getting close to the quality of Value_Noise.
 
 = Contents =
 <wiki:toc max_depth="3" />
