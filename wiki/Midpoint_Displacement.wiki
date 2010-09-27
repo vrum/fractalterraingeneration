@@ -8,7 +8,7 @@ Midpoint displacement is the second algorithm I have implemented for this projec
 
 
 = Algorithm = 
-The algorithm for midpoint displacement is actually very simple, especially when compared to its improvement the Diamond Square algorithm. First, create an array that represents a blank map. You begin by giving the four corners a random value. This is your starting square. 
+The algorithm for midpoint displacement is actually very simple, especially when compared to its improvement the Diamond_Square algorithm. First, create an array that represents a blank map. You begin by giving the four corners a random value. This is your starting square. 
 
 http://gimli.morningside.edu/~tra001/Algorithms/MidpointDisplacement/firststeps.png
 
@@ -20,7 +20,7 @@ In this square, create the middle point by averaging the four corners and adding
 
 http://gimli.morningside.edu/~tra001/Algorithms/MidpointDisplacement/othersteps.png
 
-Each iteration, make the range of the RNG smaller. That way the original few points can have pretty large variation, but the later points only get tiny adjustments. This ensures the right amount of detail in an image. In the code I call this 'range' and adjust it by 'rangeModifier' each iteration, but I could have just as easily called them 'amplitude' and 'persistence'. In fact, much like Value Noise the rangeModifier is 0.65. This value seems to strike the right balance between large and small details.
+Each iteration, make the range of the RNG smaller. That way the original few points can have pretty large variation, but the later points only get tiny adjustments. This ensures the right amount of detail in an image. In the code I call this 'range' and adjust it by 'rangeModifier' each iteration, but I could have just as easily called them 'amplitude' and 'persistence'. In fact, much like Value_Noise the rangeModifier is 0.65. This value seems to strike the right balance between large and small details.
 
 In all, this algorithm is quite easy to implement. The 'working' chunk of the code is pretty light, then I have my other modules for printing out the image from the array.
 
@@ -51,9 +51,9 @@ One last point concerning the algorithm must be made. You may have noticed that 
   * The map must have a width and height of 2^x^ + 1 pixels.
 
 = Ideas =
-Because this code is so fast, it could be used in real-time to create maps for games on-the-fly. At some point I would like to implement a 4-dimensional version of this or Diamond-Square (with the fourth dimension being time). This would create an evolving landscape, or changing clouds. However Diamond-Square may be difficult to extend into another dimension. Regular midpoint displacement may be simple enough to implement in 4D.
+Because this code is so fast, it could be used in real-time to create maps for games on-the-fly. At some point I would like to implement a 4-dimensional version of this or Diamond_Square (with the fourth dimension being time). This would create an evolving landscape, or changing clouds. However Diamond_Square may be difficult to extend into another dimension. Regular midpoint displacement may be simple enough to implement in 4D.
 
 = Conclusions =
-This algorithm is lightning-fast and can produce acceptable quality. It may also scale well into 4D. However, it is a memory hog, which limits what it can do. It is possible to step around these constraints, but at the cost of speed. Diamond Square is an improvement upon this algorithm that barely loses any speed, so in most cases I would have to recommend Diamond Square. However this algorithm is easy to understand and implement. In all a good starting point, but it can largely be replaced by Diamond Square.
+This algorithm is lightning-fast and can produce acceptable quality. It may also scale well into 4D. However, it is a memory hog, which limits what it can do. It is possible to step around these constraints, but at the cost of speed. Diamond_Square is an improvement upon this algorithm that barely loses any speed, so in most cases I would have to recommend Diamond_Square. However this algorithm is easy to understand and implement. In all a good starting point, but it can largely be replaced by Diamond_Square.
 
 Click here to see it in action: http://gimli.morningside.edu/~tra001/Algorithms/MidpointDisplacement/midpointdisp.cgi
