@@ -1,0 +1,37 @@
+#summary Explanation of Midpoint Displacement.
+
+= Introduction =
+Diamond-Square is an improvement of midpoint displacement that attempts to combine the speed of midpoint displacement with the quality of Value Noise. 
+
+= Contents =
+<wiki:toc max_depth="3" />
+
+
+= Algorithm = 
+Diamond-Square is done by implementing midpoint displacement with an improvement to eliminate the square-shaped artifacts.
+
+Midpoint displacement is relatively simple. Start with the four corners of a square. Create the midpoint of the square by averaging the four corners around it and adding a random value. Then get the 4 side midpoints by averaging the 2 closest corners. This creates 4 sub-squares. For each of these squares, repeat the 2 steps. Do this iteratively or recursively until every pixel is filled.
+
+Diamond-Square differs in the side-midpoint step. Instead of just using the two closest corners to find the midpoint, Diamond-Square uses the four closest corners of the surrounding diamond. A random value is also added to this average. 
+
+= Comparison =
+
+== Pros ==
+  * Blazingly fast. Less than 1 second for 1025 x 1025 images.
+  * Easy to implement.
+  * Decent quality by itself.
+  * Good quality with the adjustments.
+
+== Cons ==
+  * The map *must* be stored in memory, because pixels reference other pixels.
+  * Because it must be stored in memory, memory becomes a constraint. Most OS's won't allow an image beyond 1025 x 1025 without some fancy footwork (Windows won't allow one beyond 513 x 513).
+  * The vanilla form has horrible visual artifacts, but this can be avoided.
+  * The map must have a width and height of 2^x^ + 1 pixels.
+
+= Ideas =
+Because this code is so fast, it could be used in real-time to create maps for games on-the-fly. At some point I would like to implement a 4-dimensional version of this or Diamond-Square (with the fourth dimension being time). This would create an evolving landscape, or changing clouds. However Diamond-Square may be difficult to extend into another dimension. Regular midpoint displacement may be simple enough to implement in 4D.
+
+= Conclusions =
+This algorithm is lightning-fast and can produce acceptable quality. It may also scale well into 4D. However, it is a memory hog, which limits what it can do. It is possible to step around these constraints, but at the cost of speed. Diamond Square is an improvement upon this algorithm that barely loses any speed, so in most cases I would have to recommend Diamond Square. However this algorithm is easy to understand and implement. In all a good starting point, but it can largely be replaced by Diamond Square.
+
+Click here to see it in action: http://gimli.morningside.edu/~tra001/Algorithms/MidpointDisplacement/midpointdisp.cgi
