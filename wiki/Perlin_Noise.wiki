@@ -78,24 +78,24 @@ To get a gradient for a given grid-point (in 2D), do the following: {{{grad = gr
 
 That is all that is required to make a Perlin Noise function. However, that won't generally give you the image you want. Here is what it looks like in the above form:
 
-//insert picture of single octave noise.
+http://gimli.morningside.edu/~tra001/download/perlin.single.png
 
 That is noise, but there is no detail. To get the image we want, we must follow the same approach as Value_Noise: use multiple layers. I won't go into that here as it is covered extensively in the Value_Noise entry and is implemented exactly the same here. However, once this has been added you get images like this:
 
-//insert picture of multi-octave noise
+http://gimli.morningside.edu/~tra001/download/perlin.multi.png
 
 = Implementation Pitfalls =
 This algorithm seemed to fight me more than others when implementing it. It takes only very small mistakes to create bizarre images. I hope that by showing my mistakes here you will be able to fix your program if you get similar images. Conversely, if you want images like this, you'll know how to do it.
 
 At first I created a working algorithm that looked good at first glance, but upon closer inspection was very dull in the upper-left corner. In fact, it was very 'excited' in the bottom-right corner as well:
 
-//insert picture of boring/excited noise
+http://gimli.morningside.edu/~tra001/download/perlin.mistake1.png
 
 As it turns out I was passing in the integer portion of the position instead of the fractional part. That meant that in the upper-left corner (0,0) the dot product was creating very small values. At the opposite corner the grid-points are larger (5,5) and so the dot-product is much bigger. I fixed this by passing in the fractional part instead, which should have fixed the problem. As it turns out, I had another error which was giving me images like this:
 
-//insert picture of noise that looks like a puzzle
+http://gimli.morningside.edu/~tra001/download/perlin.mistake2.png
 
-It looks like a puzzle, and it was baffling. As it turns out in step 2 when you should subtract 1 I was adding 1. 
+It looks like a puzzle, and it was baffling. As it turns out in step 2 when you should subtract 1 I was adding 1. It creates an interesting effect, especially in higher octaves. 
 
 = Comparison =
 
@@ -109,10 +109,13 @@ It looks like a puzzle, and it was baffling. As it turns out in step 2 when you 
 
 == Cons ==
   * Every grid-point is at 0. This is barely noticeable and can be fixed if using multiple octaves.
-  * Complex to understand.
+  * Difficult to understand.
 
 = Ideas =
 The core of Perlin Noise seems more complex than Value_Noise. The only difference in the framework is that Perlin Noise uses a permutation table to get random numbers, while my implementation of Value_Noise seeds the RNG with the X and Y values. I would like to use a permutation table with Value_Noise to see if that speeds it up. Excluding octaves, Value_Noise is very simple, while Perlin_Noise seems to do many more multiplications. I would like to test which method is faster, and attempt to integrate whichever is faster into the opposing algorithm.
 
 = Conclusions =
 This algorithm combines the speed of Diamond_Square with the quality of Value_Noise. It is a very powerful algorithm with good speed. However, Perlin himself wasn't satisfied with it and created Simplex_Noise as a replacement. However, this algorithm is much easier to understand than Simplex_Noise and is good enough in most cases. In all, a very powerful function that succeeds in combining the speed of Midpoint_Displacement with the quality of Value_Noise.
+
+Click here to see it in action:
+http://gimli.morningside.edu/~tra001/Algorithms/PerlinNoise/PerlinNoise.cgi
