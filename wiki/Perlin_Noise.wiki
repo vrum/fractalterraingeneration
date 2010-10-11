@@ -26,10 +26,10 @@ Step 1 is easy: if you know the width of the squares in the grid, the position f
 
 Step 2 is easy to implement, but not easy to understand. The dot-product is a linear-algebra function that takes 2 vectors (a vector is a 1-dimensional chain of numbers, ie: (1,5,2,0.223)) and outputs a single number. In this case, the first vector is one of the four gradients from the above step. The second vector is made up of the relative distance from the point to that grid-point. This can also be easily found. First get just the fractional part of the position from step one: in our example (0.359, 1.0625) would create (0.369, 0.0625). Next adjust for the particular grid-point as such:
 
-top-left: just x, y
-top-right: x-1, y
-bottom-left: x, y-1
-bottom-right: x-1, y-1
+  * top-left: just x, y 
+  * top-right: x-1, y 
+  * bottom-left: x, y-1 
+  * bottom-right: x-1, y-1 
 
 This may seem counter-intuitive, but it is to adjust for the possibly negative values in the gradients. Gradients pointing left or down will have negative values, so subtracting 1 from the values compensates for this. I admit I'm still not 100% clear on this, but it is a necessary step.
 
