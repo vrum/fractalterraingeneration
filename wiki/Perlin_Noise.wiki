@@ -13,7 +13,7 @@ I would highly recommend reading the wiki entry (or a better guide) on Value_Noi
 
 Perlin Noise begins by creating a grid of vectors or gradients. Each grid point has a gradient pointing away from it in a random direction. This is easier to visualize with arrows:
 
-//insert a picture of arrows on a grid
+http://gimli.morningside.edu/~tra001/download/perlin.arrows.png
 
 Now for any given point (or pixel) interpolate the value from the surrounding four gradients. This is similar in structure to Value_Noise, but differs quite heavily. First, each grid-point has a value of 0, and every other point is found by interpolating between gradients instead of value-points. There are a few steps to this:
 
@@ -63,8 +63,6 @@ It is important to note that linear interpolation only works in 1 dimension. To 
 }}}
 
 Essentially we LERP twice on the x-axis to get two values for LERPing on the y-axis:
-
-//insert picture of bilinear interpolation
 
 In 3 dimensions the function must be called 7 times, in 4 dimensions it must be called 15 times. This is all for 1 pixel. In a 2-dimensional 500x500 image, it must be called 750,000 times. The function is not very expensive itself, but in higher dimensions Perlin Noise becomes very expensive.
 
@@ -118,4 +116,4 @@ The core of Perlin Noise seems more complex than Value_Noise. The only differenc
 This algorithm combines the speed of Diamond_Square with the quality of Value_Noise. It is a very powerful algorithm with good speed. However, Perlin himself wasn't satisfied with it and created Simplex_Noise as a replacement. However, this algorithm is much easier to understand than Simplex_Noise and is good enough in most cases. In all, a very powerful function that succeeds in combining the speed of Midpoint_Displacement with the quality of Value_Noise.
 
 Click here to see it in action:
-http://gimli.morningside.edu/~tra001/Algorithms/PerlinNoise/PerlinNoise.cgi
+http://gimli.morningside.edu/~tra001/Algorithms/PerlinNoise/perlinNoise.cgi
