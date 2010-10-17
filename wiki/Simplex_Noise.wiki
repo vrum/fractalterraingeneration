@@ -1,7 +1,7 @@
-#summary Explanation of Perlin Noise.
+#summary Explanation of Simplex Noise.
 
 = Introduction =
-Simplex Noise was created by Ken Perlin, the same man who created Perlin_Noise. Perlin_Noise worked fantastically in 2 and 3 dimensions, but Perlin was interested in 4, 5, and even up to 15 dimensions. Because Perlin_Noise is based on a grid, each value must be linearly interpolated (LERP'd) 2^N^ - 1 times. In 2D this is just 3 LERPs, but in 3D this is 7, in 4D it is 15 times, and in 15D it is 32767 LERPs for each point. If Fractional_Brownian_Motion is used, that's 32767 LERPs for each point, for each octave. Perlin_Noise is simply unusable above a certain point, and Perlin wanted to create a function that would scale nicely into higher dimensions. Simplex Noise was his answer. While Perlin_Noise is roughly O(N '*' 2^N^), Simplex Noise is roughly O(N^2^). That's polynomial instead of exponential. This makes it only slightly faster in lower dimensions but much faster in higher dimensions.
+Simplex Noise was created by Ken Perlin, the same man who created Perlin_Noise. Perlin_Noise worked fantastically in 2 and 3 dimensions, but Perlin was interested in 4, 5, and even up to 15 dimensions. Because Perlin_Noise is based on a grid, each value must be linearly interpolated (LERP'd) 2^N^ - 1 times. In 2D this is just 3 LERPs, but in 3D this is 7, in 4D it is 15 times, and in 15D it is 32767 LERPs for each point. If Fractional_Brownian_Motion is used, that's 32767 LERPs for each point, for each octave. Perlin_Noise is simply unusable above a certain point, and Perlin wanted to create a function that would scale nicely into higher dimensions. Simplex Noise was his answer. While Perlin_Noise is roughly O(N `*` 2^N^), Simplex Noise is roughly O(N^2^). That's polynomial instead of exponential. This makes it only slightly faster in lower dimensions but much faster in higher dimensions.
 
 = Contents =
 <wiki:toc max_depth="3" />
