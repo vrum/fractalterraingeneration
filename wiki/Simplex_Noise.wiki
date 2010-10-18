@@ -22,15 +22,15 @@ Steps 2 and 4 are as simple as they sound, but steps 1 and 3 are quite painful.
 
 *Step 1*: In Perlin_Noise finding the surrounding four corners is easy. Given a point, the four corners are defined by (int)x,(int)y,(int)x+1,(int)y+1. However in 2D simplex noise we move from squares to a grid of equilateral triangles, like this:
 
-////insert picture of a blank triangle grid.
+http://gimli.morningside.edu/~tra001/Algorithms/SimplexNoise/simplexgrid.png
 
 The math here is not nearly as simple, and while I understand the math and how to extrapolate it, I don't know if I'll ever fully understand _why_ it works. The idea is to skew the grid so that we have a semblance of a square grid. By stretching along the diagonal we can get a grid that is axis-aligned and looks like this:
 
-////insert picture of skewed triangle grid
+http://gimli.morningside.edu/~tra001/Algorithms/SimplexNoise/simplexgridskewed.png
 
 The first corner (lower-left) and third corner (top-right) are quite easy to get from here. From here the point can either be in the upper triangle or lower triangle. As it turns out, if the fractional part of X is greater than the fractional part of Y, the point is in the lower triangle. If fracY is greater than fracX, the point is in the upper triangle.
 
-////insert picture of determining upper/lower triangle business
+http://gimli.morningside.edu/~tra001/Algorithms/SimplexNoise/xandy.png
 
 It is important to note that numbering of the grid-points is arbitrary as long as it is consistent. At first I was hung up on trying to get an integer from the grid-point in simplex-space (referred to as (x,y) space), when getting numbers from skewed-space (referred to as (i,j) space) is just fine. These integers are only used to assign a gradient to that particular grid-point, so as long as each point always returns the same gradient it is fine. However you must be in normal (x,y) space to get the distances from the three corners.
 
