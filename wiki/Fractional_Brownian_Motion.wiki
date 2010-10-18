@@ -42,9 +42,9 @@ Noise alone is a little disappointing. Below are images of noise. Note the lack 
 
 //image of value noise (single octave)
 
-//image of perlin noise (single octave)
+http://gimli.morningside.edu/~tra001/Algorithms/SimplexNoise/blacknwhiteperlin.png
 
-//image of simplex noise (single octave)
+http://gimli.morningside.edu/~tra001/Algorithms/SimplexNoise/blacknwhite.png
 
 If fBm is used, the images gain more detail with each octave. Instead of looking blurry and boring they become crisp and interesting. Below are the same noise algorithms utilizing fBm:
 
