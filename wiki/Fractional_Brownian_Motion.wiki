@@ -38,7 +38,7 @@ The *amplitude* is how tall the features should be. Frequency determines the wid
 *Gain*, also called *persistence*, is what makes the amplitude shrink (or not shrink). Each octave the amplitude is multiplied by the gain. I use a gain of 0.65. If it is higher then the amplitude will barely shrink, and maps get crazy. Too low and the details become miniscule, and the map looks washed out. However, most use 1/lacunarity. Since the standard for lacunarity is 2.0, the standard for the gain is 0.5. Noise that has a gain of 0.5 and a lacunarity of 2.0 is referred to as 1/f noise, and is the industry standard.
 
 = Why use Fractional Brownian Motion? =
-Noise alone is a little disappointing. Below are images of noise. Note the lack of details.
+Noise alone is a little disappointing. Below are images of noise. Note the lack of details. Value_Noise, Perlin_Noise, and Simplex_Noise, respectively.
 
 //image of value noise (single octave)
 
