@@ -40,7 +40,7 @@ The *amplitude* is how tall the features should be. Frequency determines the wid
 = Why use Fractional Brownian Motion? =
 Noise alone is a little disappointing. Below are images of noise. Note the lack of details. Value_Noise, Perlin_Noise, and Simplex_Noise, respectively.
 
-http://gimli.morningside.edu/~tra001/Algorithms/ValueNoise/blacknwhitevalue.png
+<img src = "http://gimli.morningside.edu/~tra001/Algorithms/ValueNoise/blacknwhitevalue.png" alt = "Value Noise" />
 
 http://gimli.morningside.edu/~tra001/Algorithms/SimplexNoise/blacknwhiteperlin.png
 
