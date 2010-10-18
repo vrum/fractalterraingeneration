@@ -40,7 +40,7 @@ The *amplitude* is how tall the features should be. Frequency determines the wid
 = Why use Fractional Brownian Motion? =
 Noise alone is a little disappointing. Below are images of noise. Note the lack of details. Value_Noise, Perlin_Noise, and Simplex_Noise, respectively.
 
-<img src = "http://gimli.morningside.edu/~tra001/Algorithms/ValueNoise/blacknwhitevalue.png" alt = "Value Noise" />
+http://gimli.morningside.edu/~tra001/Algorithms/ValueNoise/blacknwhitevalue.png
 
 http://gimli.morningside.edu/~tra001/Algorithms/SimplexNoise/blacknwhiteperlin.png
 
@@ -48,7 +48,7 @@ http://gimli.morningside.edu/~tra001/Algorithms/SimplexNoise/blacknwhite.png
 
 If fBm is used, the images gain more detail with each octave. Instead of looking blurry and boring they become crisp and interesting. Below are the same noise algorithms utilizing fBm:
 
-//image of fBm value noise
+http://gimli.morningside.edu/~tra001/Algorithms/ValueNoise/blacknwhitevaluefbm.png
 
 //image of fBm Perlin noise
 
