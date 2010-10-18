@@ -50,8 +50,8 @@ If fBm is used, the images gain more detail with each octave. Instead of looking
 
 http://gimli.morningside.edu/~tra001/Algorithms/ValueNoise/blacknwhitevaluefbm.png
 
-//image of fBm Perlin noise
+http://gimli.morningside.edu/~tra001/Algorithms/PerlinNoise/blacknwhiteperlinfbm.png
 
-//image of fBm simplex noise
+http://gimli.morningside.edu/~tra001/Algorithms/SimplexNoise/blacknwhitefbm.png
 
 Fractional Brownian Motion isn't always necessary and considerably slows down a program. However, most noise is not fractal by nature. Fractional Brownian Motion makes it fractal. 
