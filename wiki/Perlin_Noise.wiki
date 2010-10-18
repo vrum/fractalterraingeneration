@@ -78,7 +78,7 @@ That is all that is required to make a Perlin Noise function. However, that won'
 
 http://gimli.morningside.edu/~tra001/download/perlin.single.png
 
-That is noise, but there is no detail. To get the image we want, we must follow the same approach as Value_Noise: use multiple layers. I won't go into that here as it is covered extensively in the Value_Noise entry and is implemented exactly the same here. However, once this has been added you get images like this:
+That is noise, but there is no detail. To get the image we want, we must follow the same approach as Value_Noise: use Fractional_Brownian_Motion. By combining the two, we get an image like this:
 
 http://gimli.morningside.edu/~tra001/download/perlin.multi.png
 
