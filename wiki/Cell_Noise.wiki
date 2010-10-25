@@ -1,13 +1,45 @@
-#summary One-sentence summary of this page.
+#summary Explanation of Cell Noise.
 
 = Introduction =
+Cell Noise, also called Worley Noise, is a very simple yet fascinating algorithm.
 
-Add your content here.
+= Contents =
+<wiki:toc max_depth="3" />
 
 
-= Details =
+= Algorithm = 
+Cell Noise is a very simple algorithm, but can yield incredible results.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/F1.png
+
+http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/F2.png
+
+http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/F2-F1.png
+
+http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/F1+F2.png
+
+http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/F1-F2.png
+
+http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/F1.F2.png
+
+http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/blacknwhitefbm.png
+
+http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/colorfbm.png
+
+
+= Comparison =
+
+== Pros ==
+  
+
+== Cons ==
+  
+
+= Ideas =
+
+
+= Conclusions =
+
+
+Click here to see it in action:
+http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/CellNoise.cgi
