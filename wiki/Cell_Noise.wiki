@@ -1,14 +1,23 @@
 #summary Explanation of Cell Noise.
 
 = Introduction =
-Cell Noise, also called Worley Noise, is a very simple yet fascinating algorithm.
+Cell Noise, also called Worley Noise, is a very simple yet fascinating algorithm. 
 
 = Contents =
 <wiki:toc max_depth="3" />
 
 
 = Algorithm = 
-Cell Noise is a very simple algorithm, but can yield incredible results.
+Cell Noise is a very simple algorithm, but can yield incredible results. The algorithm only has two parts:
+
+  # Set up an array of points around the image
+  # For any pixel, the value is the distance from the n^th^ closest point.
+
+This is relatively simple, but the simplicity allows for a lot of experimentation. A few things can be mixed up.
+
+  * The distance function
+  * Which point to use for the distance function
+  * How to combine the above two
 
 http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/F1.png
 
