@@ -1,7 +1,7 @@
 #summary Explanation of Cell Noise.
 
 = Introduction =
-Cell Noise, also called Worley Noise, is a very simple yet fascinating algorithm. 
+Cell Noise, also called Worley Noise, is a very simple yet fascinating algorithm. It ends up being slower than Perlin_Noise, but is still relatively fast. The quality is not compatible with our current algorithms, however it creates fascinating patterns that can be used for certain landscapes
 
 = Contents =
 <wiki:toc max_depth="3" />
@@ -19,9 +19,42 @@ This is relatively simple, but the simplicity allows for a lot of experimentatio
   * Which point to use for the distance function
   * How to combine the above two
 
+First, there are many different distance functions that can be used. First and easiest to grasp is the *Euclidean* function:
+
+{{{
+    x_difference = pixel.x - closest_point.x;
+    y_difference = pixel.y - closest_point.y;
+
+    distance = sqrt(x_difference * x_difference + y_difference * y_difference);
+}}}
+
+This is just the Pythagorean Theorem: a^2^ + b^2^ = c^2^. A variation on this is *Euclidean-Squared*, which is the same but leaves off the square-root function, as this is always very slow. This creates steeper slopes, but still gives roughly the same image.
+
+Next is the *Manhattan* function:
+
+{{{
+    x_difference = pixel.x - closest_point.x;
+    y_difference = pixel.y - closest_point.y;
+
+    distance = abs(x_difference) + abs(y_difference);
+}}}
+
+This creates interesting diamond-shaped patterns that don't make very good terrains, but are still interesting. There are many less common functions (a couple of which are in the source code), and distance functions can be created to suit any need.
+
+Next we can vary which point is chosen. Most often it is the closest, but it can also be the second-closest, or third-closest, or even 15th-closest. This is denoted by an F and then the number. So using the first-closest point is denoted by F1, the second-closest point is denoted by F2, the 15th-closest point is denoted by F15, and so on. Depending on the distance function, the output can change dramatically between choices.
+
+Finally, we can combine these in interesting ways. For example, deciding a point based on Euclidean F2-F1 (the output of the second-closest point minus the output of the closest point distance functions) produces very crisp lines, as can be seen below.
+
+= Gallery =
+Euclidean F1:
+
 http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/F1.png
 
+Euclidean F2:
+
 http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/F2.png
+
+Euclidean F2 - F1:
 
 http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/F2-F1.png
 
