@@ -100,7 +100,7 @@ http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/manhattanF2.png
   * Doesn't look as random as the other algorithms: there are definitive shapes
 
 = Ideas =
-Because it is so easy to customize this algorithm and it has reasonably fast output, I'd like to create a genetic algorithm that would learn to create more interesting images. The color gradient, distance function, point-selection, and combinations could all be altered with fascinating results.
+Because it is so easy to customize this algorithm and it has reasonably fast output, I'd like to create a genetic algorithm that would learn to create more interesting images. The color gradient, distance function, point-selection, and combinations could all be altered with fascinating results. The fitness function would either be human-based (which would be very slow) or I'll have to come up with something clever to objectively grade how interesting an image is.
 
 = Conclusions =
 In the other algorithms, output has been relatively featureless: it always looked like a wavy sheet, which when combined with Fractional_Brownian_Motion creates terrain-like fractals. With Cell Noise there are always definitive shapes and lines, which doesn't appear to create very convincing terrain. In the above colored Euclidean F1 with fBm, it looks very rounded and hilly. On the other hand, output like Euclidean F2 or Euclidean F2-F1 looks a lot like a system of canyons. While it doesn't fit with my current look, I will definitely be saving it for other types of terrain and for purely artistic images. In all, a simple yet fascinating algorithm.
