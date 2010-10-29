@@ -19,9 +19,11 @@ The second wrinkle is how to track the points. An array can be set up to list ea
 
 As I said before, to find the closest point, it is important to not just search the current square but to also search the surrounding squares. So in 2D, it could look something like this:
 
-//2D grid with random points and current pixel, but closest point is in another square.
+http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/cellgrid.png
 
-In 2D, you have to search a total of 9 squares, comparing the distances to every point within them. Quite often it will be the point within the local square, so there are shortcuts that can be taken. One shortcut is to see if other squares are even eligible. First, get the distance from the closest point within the local square. For each surrounding square, get the distance to the closest edge or corner. If that distance is greater than the distance to a local point, don't check any of the points within that square. In implementations where a square can have 5 or more points, this can save a lot of time. In my implementation where each square has 1 point, it would only slow performance, so I did not include this shortcut.
+The white point with the arrow is the current pixel. The green square is the local square, which is most likely to contain the closest point. However, as the diagram shows, it is not uncommon for the closest point to be within a neighboring square (marked in yellow). In 2D, the algorithm has to search a total of 9 squares, comparing the distances to every point within them. In many implementations the distances are kept in a list, that way first, second, and third closest points (and even out further) can be used. I don't do this in my implementation, but it would be an easy addition.
+
+Quite often it will be the point within the local square, so there are shortcuts that can be taken. One shortcut is to see if other squares are even eligible. First, get the distance from the closest point within the local square. For each surrounding square, get the distance to the closest edge or corner. If that distance is greater than the distance to a local point, don't check any of the points within that square. In implementations where a square can have 5 or more points, this can save a lot of time. In my implementation where each square has 1 point, it would only slow performance, so I did not include this shortcut.
 
 In all it is pretty simple, but the simplicity allows for a lot of experimentation. A few things can be mixed up.
 
@@ -115,8 +117,10 @@ http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/manhattanF2.png
 = Ideas =
 Because it is so easy to customize this algorithm and it has reasonably fast output, I'd like to create a genetic algorithm that would learn to create more interesting images. The color gradient, distance function, point-selection, and combinations could all be altered with fascinating results. The fitness function would either be human-based (which would be very slow) or I'll have to come up with something clever to objectively grade how interesting an image is.
 
+One interesting possibility with Cell Noise is creating Voronoi Diagrams, also called Closest Neighbor diagrams. Examples can be seen here: [http://en.wikipedia.org/wiki/Voronoi_diagram Voronoi]. These diagrams can be created with Cell Noise by assigning a color to a pixel based on the ID of the closest point, not the distance to it. This creates chunks of colors. This would require a slight overhaul of my code, as ID's aren't assigned and colors are carefully chosen. I will probably do it at some point though.
+
 = Conclusions =
-In the other algorithms, output has been relatively featureless: it always looked like a wavy sheet, which when combined with Fractional_Brownian_Motion creates terrain-like fractals. With Cell Noise there are always definitive shapes and lines, which doesn't appear to create very convincing terrain. In the above colored Euclidean F1 with fBm, it looks very rounded and hilly. On the other hand, output like Euclidean F2 or Euclidean F2-F1 looks a lot like a system of canyons. While it doesn't fit with my current look, I will definitely be saving it for other types of terrain and for purely artistic images. In all, a simple yet fascinating algorithm.
+In the other algorithms, output has been relatively featureless: it always looked like a wavy sheet, which when combined with Fractional_Brownian_Motion creates terrain-like fractals. With Cell Noise there are always definitive shapes and lines, which doesn't appear to create very convincing terrain. In the above colored Euclidean F1 with fBm, it looks very rounded and hilly, like a head of cauliflower (although cauliflower is technically a natural fractal). On the other hand, output like Euclidean F2 or Euclidean F2-F1 looks a lot like a system of canyons. While it doesn't fit with my current look, I will definitely be saving it for other types of terrain and for purely artistic images. In all, a simple yet fascinating algorithm.
 
 Click here to see it in action:
 http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/CellNoise.cgi
