@@ -56,6 +56,8 @@ Next we can vary which point is chosen. Most often it is the closest, but it can
 Finally, we can combine these in interesting ways. For example, deciding a point based on Euclidean F2-F1 (the output of the second-closest point minus the output of the closest point distance functions) produces very crisp lines, as can be seen below. There are no bounds on the combinations; it is even possible to use cell noise values as seeds in other algorithms, or in cell noise itself. There are infinite possibilities, but most don't look very good. Here are some of the more common approaches:
 
 = Gallery =
+I don't normally do a gallery, but this is a very versatile algorithm.
+
 Euclidean F1:
 
 http://gimli.morningside.edu/~tra001/Algorithms/CellNoise/F1.png
