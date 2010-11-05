@@ -1,13 +1,17 @@
 #summary Explanation of three Erosion Models.
 
 = Introduction =
+Erosion Modeling is taking a heightmap and simulating erosion to alter it. Often this is used in video games to make the map more playable. Games generally require large relatively flat areas, but still want steep cliffs for aesthetic value.
 
+I implemented three different techniques, as described in [http://oddlabs.com/download/terrain_generation.pdf this paper]. The three are *Thermal Erosion*, *Hydraulic Erosion*, and *Improved Erosion*.
 
 = Contents =
 <wiki:toc max_depth="3" />
 
+= Algorithms =
 
-= Algorithm = 
+== Thermal Erosion ==
+*Thermal Erosion* represents gravity collapsing cliffs. The idea is relatively simple: The slope of a point is the difference in height between that point and its tallest/shortest neighbor. For each point if the slope is greater than the angle _T_, called the talus angle, then gravity wins and soil is moved until the slope is less than _T_. 
 
 = Comparison =
 
