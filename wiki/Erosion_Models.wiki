@@ -23,4 +23,4 @@
 
 
 Click here to see it in action:
-http://gimli.morningside.edu/~tra001/Algorithms/PerlinNoise/perlinNoise.cgi
+http://gimli.morningside.edu/~tra001/Algorithms/Erosion/ImprovedErosion.cgi
