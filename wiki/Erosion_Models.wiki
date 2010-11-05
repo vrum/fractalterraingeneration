@@ -6,12 +6,16 @@ Erosion Modeling is taking a heightmap and simulating erosion to alter it. Often
 I implemented three different techniques, as described in [http://oddlabs.com/download/terrain_generation.pdf this paper]. The three are *Thermal Erosion*, *Hydraulic Erosion*, and *Improved Erosion*.
 
 = Contents =
-<wiki:toc max_depth="3" />
+<wiki:toc max_depth="5" />
 
 = Algorithms =
 
 == Thermal Erosion ==
-*Thermal Erosion* represents gravity collapsing cliffs. The idea is relatively simple: The slope of a point is the difference in height between that point and its tallest/shortest neighbor. For each point if the slope is greater than the angle _T_, called the talus angle, then gravity wins and soil is moved until the slope is less than _T_. 
+*Thermal Erosion* represents gravity collapsing cliffs. The idea is relatively simple: The slope of a point is the difference in height between that point and its tallest/shortest neighbor. For each point if the slope is greater than the angle _T_, called the talus angle, then gravity wins and soil is moved until the slope is less than _T_.
+
+This is a relatively straight-forward algorithm, but there are a few different ways to handle some issues. For instance, when altering the terrain, changes can be immediately applied or a difference map can be used that applies all changes at once. In my implementation I immediately applied the changes.
+
+The method for checking neighbors can be changed as well. In 2D
 
 = Comparison =
 
