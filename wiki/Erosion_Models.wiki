@@ -21,6 +21,8 @@ The method for checking neighbors can be changed as well. In 2D a point has 8 ne
 
 Although the code can be easily changed (two operations) to use a Moore neighborhood instead.
 
+The important variable here is the talus angle, _T_. I set mine to 4/`width_of_the_map`. 
+
 Thermal Erosion after 4 iterations:
 //thermal erosion example picture
 
@@ -34,7 +36,7 @@ Thermal Erosion after 4 iterations:
 
 ==== Cons ====
   * Doesn't maintain cliffs at all
-  * Flat areas are usually exactly the _T_ angle
+  * Flat areas are often exactly the _T_ angle
   * Not great quality
 
 == Hydraulic Erosion ==
@@ -71,7 +73,7 @@ Every cell will fall into one of these three categories. For maximum correctness
 
 *4. Evaporation.* This step is pretty easy. For every cell evaporate a given percentage (`evaporation`) of the water from the *water map*. Now that the water has gone down, the sediment in the water usually exceeds `capacity`. Sediment is subtracted from the *sediment map* and added to the heightmap until it no longer exceeds `capacity`. One interesting optimization is setting `solubility = capacity`. That means any given unit of water will contain the same amount of sediment, so the *sediment map* can be excluded. This cuts memory requirements by 1/3 and makes programming simpler.
 
-These four steps are performed on every cell (pixel, point, etc.) every iteration. Hydraulic erosion usually takes 50-100 iterations to get the desired quality. This is hydraulic erosion after 50 iterations:
+These four steps are performed on every cell (pixel, point, etc.) every iteration. Hydraulic erosion usually takes 50-100 iterations to get the desired quality. This is hydraulic erosion after 500 iterations:
 
 //picture of hydraulic erosion
 
@@ -92,8 +94,31 @@ Rain doesn't have to come down evenly, or be rain at all. If consistent noise is
 
 The adjustment is simple: in *Thermal Erosion* soil moves down if the slope is greater than the talus angle _T_. However, if this operation is flipped to only move soil if the slope is <= _T_, then cliffs are left alone and relatively flat areas continue to flatten. This creates plateaus, which are very useful for games.
 
-= Conclusions =
+One pitfall here is to continue using the same _T_ angle. Using 4/map`_`width seems to completely stop erosion. Values of 12/map`_`width or 16/map`_`width will create the desired erosion. It is also important to determine how many iterations are required. Too many iterations creates flat landscapes with thin squiggles running through it. The squiggles are plateaus eroded until they are only 1 or 2 pixels wide (and so become 100% cliffs) and become immune to the erosion.
 
+Here is *Improved Erosion* after 50 iterations:
+//picture of improved erosion
+
+=== Comparison ===
+
+==== Pros ====
+  * Much faster than *Hydraulic Erosion*
+  * Good quality
+  * Great for games
+  * Easy to implement
+
+==== Cons ====
+  * Good for games, but not necessarily for realism.
+  * Slightly slower than *Thermal Erosion* (takes more iterations).
+  * Iterations must be determined carefully, or artifacts can arise.
+
+= Overall Ideas =
+I think the landscapes might look better with a very small amount of noise added back on after erosion is finished, just to give it a texture. 
+
+= Conclusions =
+Thermal erosion looks pretty awful, so I don't think I'll ever be using it. Hydraulic Erosion is my favorite, but runs pretty slowly. Improved Erosion is good for games, but doesn't really look all that realistic. I will continue using and experimenting with Improved Erosion and especially Hydraulic Erosion.
+
+I should note that I learned the other algorithms by mashing together information from many different sources. For Erosion Modeling I really only had one primary reference, http://oddlabs.com/download/terrain_generation.pdf which definitely deserves mention as it is very well done.
 
 Click here to see it in action:
 http://gimli.morningside.edu/~tra001/Algorithms/Erosion/ImprovedErosion.cgi
