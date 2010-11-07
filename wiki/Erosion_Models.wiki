@@ -59,11 +59,38 @@ This is usually done over many iterations. To keep track of everything, a few se
 
 *3. Movement.* This is the difficult step. Every cell now has some water on it (some may have more from previous iterations). Water uphill must move to the lowest neighbor downhill, and water must pool and level out when possible. So for any given cell there are a few options:
 
-//three pictures of water + land options
+http://gimli.morningside.edu/~tra001/Algorithms/Erosion/erosion1.png
+
+Case 1: The height of the water from the cell + the water and land from the lowest neighbor still does not reach the height of the land in the cell. In this case, all water is moved from the cell to the lowest neighbor.
+
+Case 2: If all water were transfered the water level would be above the land level of the cell, so it can't all be moved. Instead the two water levels must be evened out, subtracting 1/2 the difference from the cell's water and adding 1/2 the difference to the neighbor's water.
+
+Case 3: The cell has no neighbors lower than it, so no water needs to be moved at all.
+
+Every cell will fall into one of these three categories. For maximum correctness water should be distributed to all lower neighbors, but using only the lowest neighbor greatly increases speed and barely affects quality. 
 
 *4. Evaporation.* This step is pretty easy. For every cell evaporate a given percentage (`evaporation`) of the water from the *water map*. Now that the water has gone down, the sediment in the water usually exceeds `capacity`. Sediment is subtracted from the *sediment map* and added to the heightmap until it no longer exceeds `capacity`. One interesting optimization is setting `solubility = capacity`. That means any given unit of water will contain the same amount of sediment, so the *sediment map* can be excluded. This cuts memory requirements by 1/3 and makes programming simpler.
 
-= Ideas =
+These four steps are performed on every cell (pixel, point, etc.) every iteration. Hydraulic erosion usually takes 50-100 iterations to get the desired quality. This is hydraulic erosion after 50 iterations:
+
+//picture of hydraulic erosion
+
+=== Comparison ===
+==== Pros ====
+  * Very good quality
+  * Approximates reality pretty well
+
+==== Cons ====
+  * Much slower than Thermal Erosion
+  * Requires many more iterations than Thermal Erosion
+
+=== Ideas ===
+Rain doesn't have to come down evenly, or be rain at all. If consistent noise is used then certain areas will get very little rain (and look more jagged) and some areas will get more rain (and look smoother). This wouldn't look very good on a map of a small area, but for planet-sized maps it would add some interesting variance (although ocean beds would have to be taken into account). It would also be possible to 'plant' a spring at the top of a mountain which would spew extra water each iteration, eventually cutting a river-bed into the landscape. Neither of these ideas would be very difficult to implement, so I will have to come back to them soon.
+
+== Improved Erosion ==
+*Improved Erosion* is a relatively minor adjustment to *Thermal Erosion* to create the desired outputs. *Thermal Erosion* flattened cliffs but did nothing to relatively flat areas. We want the opposite of this, to keep cliffs but continue flattening areas that were slightly jagged.
+
+The adjustment is simple: in *Thermal Erosion* soil moves down if the slope is greater than the talus angle _T_. However, if this operation is flipped to only move soil if the slope is <= _T_, then cliffs are left alone and relatively flat areas continue to flatten. This creates plateaus, which are very useful for games.
 
 = Conclusions =
 
