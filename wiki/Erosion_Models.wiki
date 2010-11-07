@@ -15,15 +15,45 @@ I implemented three different techniques, as described in [http://oddlabs.com/do
 
 This is a relatively straight-forward algorithm, but there are a few different ways to handle some issues. For instance, when altering the terrain, changes can be immediately applied or a difference map can be used that applies all changes at once. In my implementation I immediately applied the changes.
 
-The method for checking neighbors can be changed as well. In 2D
+The method for checking neighbors can be changed as well. In 2D a point has 8 neighbors, called the Moore Neighborhood. However, only checking four corners (called the Von Neumann Neighborhood) yields roughly the same results while greatly improving speed. The Von Neumann neighborhood uses the four neighbors that make a cross shape, however I used a rotated Von Neumann neighborhood like so:
 
-= Comparison =
+//rotated Von Neumann neighborhood picture
 
-== Pros ==
-  
+Although the code can be easily changed (two operations) to use a Moore neighborhood instead.
 
-== Cons ==
-  
+Thermal Erosion:
+//thermal erosion example picture
+
+=== Comparison ===
+
+==== Pros ====
+  * Each iteration is very fast
+  * Needs very few iterations
+  * Easy to understand and implement
+  * Creates flat areas well
+
+==== Cons ====
+  * Doesn't maintain cliffs at all
+  * Flat areas are usually exactly the _T_ angle
+  * Not great quality
+
+== Hydraulic Erosion ==
+*Hydraulic Erosion* models rainwater picking up sediment from uphill and depositing it downhill. This ends up being considerably more complex than *Thermal Erosion*, but can be roughly broken into four steps:
+
+  # Rainfall (new water)
+  # Erosion (picking up sediment)
+  # Water Movement (downhill usually)
+  # Evaporation / Deposition (depositing the sediment)
+
+This is usually done over many iterations. To keep track of everything, a few secondary maps are used: a *water map*, a *sediment map*, and a *difference map*. The *difference map* is the same as in *Thermal Erosion*: changes for an iteration are recorded to it then applied all at once after each iteration. In my code I again did not use a *difference map* and instead apply changes immediately.
+
+A few coefficients must be defined:
+  * _rain`_`amount_ : how much rain is deposited on each cell each iteration
+  * _solubility_ : how much soil is eroded into sediment each iteration
+  * _evaporation_ : what percentage of water evaporates each iteration
+  * _capacity_ : how much sediment a given unit of water can hold
+
+
 
 = Ideas =
 
