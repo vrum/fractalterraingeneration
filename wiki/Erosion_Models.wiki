@@ -3,7 +3,9 @@
 = Introduction =
 Erosion Modeling is taking a heightmap and simulating erosion to alter it. Often this is used in video games to make the map more playable. Games generally require large relatively flat areas, but still want steep cliffs for aesthetic value.
 
-I implemented three different techniques, as described in [http://oddlabs.com/download/terrain_generation.pdf this paper]. The three are *Thermal Erosion*, *Hydraulic Erosion*, and *Improved Erosion*.
+I implemented three different techniques, as described in [http://oddlabs.com/download/terrain_generation.pdf this paper]. The three are *Thermal Erosion*, *Hydraulic Erosion*, and *Improved Erosion*. For reference, all the images below used this as the base image to which specific erosion algorithms were applied:
+
+http://gimli.morningside.edu/~tra001/Algorithms/Erosion/baseimage.png
 
 = Contents =
 <wiki:toc max_depth="5" />
@@ -24,7 +26,8 @@ Although the code can be easily changed (two operations) to use a Moore neighbor
 The important variable here is the talus angle, _T_. I set mine to 4/`width_of_the_map`. 
 
 Thermal Erosion after 4 iterations:
-//thermal erosion example picture
+
+http://gimli.morningside.edu/~tra001/Algorithms/Erosion/thermal4.png
 
 === Comparison ===
 
@@ -75,7 +78,7 @@ Every cell will fall into one of these three categories. For maximum correctness
 
 These four steps are performed on every cell (pixel, point, etc.) every iteration. Hydraulic erosion usually takes 50-100 iterations to get the desired quality. This is hydraulic erosion after 500 iterations:
 
-//picture of hydraulic erosion
+http://gimli.morningside.edu/~tra001/Algorithms/Erosion/hydro500.png
 
 === Comparison ===
 ==== Pros ====
@@ -97,7 +100,8 @@ The adjustment is simple: in *Thermal Erosion* soil moves down if the slope is g
 One pitfall here is to continue using the same _T_ angle. Using 4/map`_`width seems to completely stop erosion. Values of 12/map`_`width or 16/map`_`width will create the desired erosion. It is also important to determine how many iterations are required. Too many iterations creates flat landscapes with thin squiggles running through it. The squiggles are plateaus eroded until they are only 1 or 2 pixels wide (and so become 100% cliffs) and become immune to the erosion.
 
 Here is *Improved Erosion* after 50 iterations:
-//picture of improved erosion
+
+http://gimli.morningside.edu/~tra001/Algorithms/Erosion/improved50.png
 
 === Comparison ===
 
@@ -109,6 +113,7 @@ Here is *Improved Erosion* after 50 iterations:
 
 ==== Cons ====
   * Good for games, but not necessarily for realism.
+    * Looks kind of like a watercolor painting.
   * Slightly slower than *Thermal Erosion* (takes more iterations).
   * Iterations must be determined carefully, or artifacts can arise.
 
