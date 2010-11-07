@@ -19,7 +19,7 @@ This is a relatively straight-forward algorithm, but there are a few different w
 
 The method for checking neighbors can be changed as well. In 2D a point has 8 neighbors, called the Moore Neighborhood. However, only checking four corners (called the Von Neumann Neighborhood) yields roughly the same results while greatly improving speed. The Von Neumann neighborhood uses the four neighbors that make a cross shape, however I used a rotated Von Neumann neighborhood like so:
 
-//rotated Von Neumann neighborhood picture
+http://gimli.morningside.edu/~tra001/Algorithms/Erosion/erosion2.png
 
 Although the code can be easily changed (two operations) to use a Moore neighborhood instead.
 
