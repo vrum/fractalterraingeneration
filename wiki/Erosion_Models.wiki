@@ -21,7 +21,7 @@ The method for checking neighbors can be changed as well. In 2D a point has 8 ne
 
 Although the code can be easily changed (two operations) to use a Moore neighborhood instead.
 
-Thermal Erosion:
+Thermal Erosion after 4 iterations:
 //thermal erosion example picture
 
 === Comparison ===
@@ -45,16 +45,25 @@ Thermal Erosion:
   # Water Movement (downhill usually)
   # Evaporation / Deposition (depositing the sediment)
 
+A few coefficients must be defined:
+  * `rain_amount` : how much rain is deposited on each cell each iteration
+  * `solubility` : how much soil is eroded into sediment each iteration
+  * `evaporation` : what percentage of water evaporates each iteration
+  * `capacity` : how much sediment a given unit of water can hold
+
 This is usually done over many iterations. To keep track of everything, a few secondary maps are used: a *water map*, a *sediment map*, and a *difference map*. The *difference map* is the same as in *Thermal Erosion*: changes for an iteration are recorded to it then applied all at once after each iteration. In my code I again did not use a *difference map* and instead apply changes immediately.
 
-A few coefficients must be defined:
-  * _rain`_`amount_ : how much rain is deposited on each cell each iteration
-  * _solubility_ : how much soil is eroded into sediment each iteration
-  * _evaporation_ : what percentage of water evaporates each iteration
-  * _capacity_ : how much sediment a given unit of water can hold
+*1. Rainfall.* This is a very easy step. For each cell (pixel, point, etc.) add a small amount (`rain_amount`) to the *water map*. While it is perfectly possible to use noise to make nicely randomized rain, after a few iterations it makes no difference. We aren't actually simulating a rain storm, we're simulating years of continued erosion.
 
+*2. Erosion.* This step is also pretty easy. For each cell subtract a small amount of soil (`solubility`) and put it in the *sediment map*. This step is nearly as easy as step 1.
 
+*3. Movement.* This is the difficult step.
 
+*4. Evaporation.* This step is pretty easy. For every cell evaporate a given percentage (`evaporation`) of the water from the *water map*. Now that the water has gone down, the sediment in the water usually exceeds `capacity`. Sediment is subtracted from the *sediment map* and added to the heightmap until it no longer exceeds `capacity`. One interesting 
+
+These can be changed with varying results. However, one interesting alteration is setting `solubility = capacity`. This means that all water contains the same amount of sediment, so the *sediment map* can be excluded, cutting the memory requirement by 1/3.
+
+One further improvement described involves 
 = Ideas =
 
 = Conclusions =
