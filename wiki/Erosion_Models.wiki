@@ -57,13 +57,12 @@ This is usually done over many iterations. To keep track of everything, a few se
 
 *2. Erosion.* This step is also pretty easy. For each cell subtract a small amount of soil (`solubility`) and put it in the *sediment map*. This step is nearly as easy as step 1.
 
-*3. Movement.* This is the difficult step.
+*3. Movement.* This is the difficult step. Every cell now has some water on it (some may have more from previous iterations). Water uphill must move to the lowest neighbor downhill, and water must pool and level out when possible. So for any given cell there are a few options:
 
-*4. Evaporation.* This step is pretty easy. For every cell evaporate a given percentage (`evaporation`) of the water from the *water map*. Now that the water has gone down, the sediment in the water usually exceeds `capacity`. Sediment is subtracted from the *sediment map* and added to the heightmap until it no longer exceeds `capacity`. One interesting 
+//three pictures of water + land options
 
-These can be changed with varying results. However, one interesting alteration is setting `solubility = capacity`. This means that all water contains the same amount of sediment, so the *sediment map* can be excluded, cutting the memory requirement by 1/3.
+*4. Evaporation.* This step is pretty easy. For every cell evaporate a given percentage (`evaporation`) of the water from the *water map*. Now that the water has gone down, the sediment in the water usually exceeds `capacity`. Sediment is subtracted from the *sediment map* and added to the heightmap until it no longer exceeds `capacity`. One interesting optimization is setting `solubility = capacity`. That means any given unit of water will contain the same amount of sediment, so the *sediment map* can be excluded. This cuts memory requirements by 1/3 and makes programming simpler.
 
-One further improvement described involves 
 = Ideas =
 
 = Conclusions =
