@@ -12,7 +12,7 @@ To use fBm, the following is typical:
 //for each pixel, get the value
 total = 0.0f;
 frequency = 1.0f/(float)hgrid;
-amplitude = persistence;
+amplitude = gain;
 		
 for (i = 0; i < octaves; ++i)
 {
