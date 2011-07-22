@@ -9,7 +9,7 @@ typedef unsigned char byte;
 struct color{
 	//this union means the color is stored in 4 bytes, but is accessible in 3 ways
 	union{
-		//NOTE: depending on machine properties, 'fullval' can return
+		//NOTE: depending on machine specifics, 'fullval' can return
 		//	unpredictable results. It should only be used for easier
 		//	inter-color communication.
 		unsigned fullval;

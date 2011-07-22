@@ -1,14 +1,12 @@
-#include "colorizer.h"
-#include "color.h"
-#include "Array2D.h"
-#include "CellNoise.h"
 #include <sstream>
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
 #include <string>
-#include <map>
 #include <fstream>
+#include "CellNoise.h"
+#include "color.h"
+#include "Array2D.h"
 
 using namespace std;
 
@@ -31,9 +29,7 @@ int main(int argc, char* argv[])
 	bool clipping  = false;
 	string fchunk = "part";
 	string disfunc = "euclideanSquared";
-	string equation = "F1";
 	float minkowski = -10000.0f;
-	map <float, color> grad; make_gradient(grad, "0.0=255:1.0=0");
 	
 	for (i = 1; i < (unsigned)argc; ++i)
 	{
@@ -85,16 +81,9 @@ int main(int argc, char* argv[])
 			{
 				fchunk = post;
 			}
-			else if (pre == "equation" || pre == "eq")
-			{
-				equation = post;
-			}
 			else if (pre == "seed")
 			{
 				rseed = atoi(post.c_str());
-			}
-			else if (pre == "gradient" || pre == "grad" || pre=="colors"){
-				make_gradient(grad, post);
 			}
 			else if (pre == "minkowski" || pre == "Minkowski")
 			{
@@ -113,11 +102,7 @@ int main(int argc, char* argv[])
 	//make the cell noise object
 	CellNoise noise(xgrid,ygrid,zgrid,point,buksz,wrapping);
 	noise.setDistanceFunction(disfunc);
-	noise.setEquation(equation);
 	if (minkowski != -10000.0f) noise.setMinkowski(minkowski);
-	
-	//make the height_map
-	Array_2D<float> height_map(xgrid,ygrid);
 	
 	//make the color map
 	color_map colmap(xgrid,ygrid);
@@ -139,12 +124,9 @@ int main(int argc, char* argv[])
 		if (fname[len+1] > '9'){++fname[len];  fname[len+1]='0';}//this won't work if you exceed 999!
 
 		//now make noise!
-		noise.makeSomeNoise(height_map,i);
+		noise.makeSomeNoise(colmap,i);
 		
-		//give it some color
-		colorize(height_map,colmap,grad);
-		
-		//print out the height_map
+		//print out the color map
 		colmap.print(fname);
 		
 		//finally, update the user (occasionally)

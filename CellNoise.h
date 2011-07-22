@@ -2,12 +2,13 @@
 #define CELLNOISE_H
 #include <vector>
 #include <string>
-#include "equation.h"
 #include "Array2D.h"
+#include "color.h"
 
 struct location{
+	color col;
 	float x,y,z;
-	location(float X, float Y, float Z) { x = X; y = Y; z = Z; }
+	location(float X, float Y, float Z, color Col): x(X), y(Y), z(Z), col(Col) { }
 	location() { x = y = z = 0.0f; }
 };
 
@@ -24,7 +25,6 @@ class CellNoise
 	unsigned buckets_x,buckets_y,buckets_z;
 	
 	float (CellNoise::*distanceFunction)(float x1, float y1, float z1, float x2, float y2, float z2);
-	equation* eq;
 	float minkowski_coefficient;
 	
 	float euclidean(float x1, float y1, float z1, float x2, float y2, float z2);
@@ -41,11 +41,10 @@ public:
 	CellNoise(unsigned Xgrid, unsigned Ygrid, unsigned Zgrid, unsigned Num_points, unsigned Bucket_size, bool Wrapping);
 	~CellNoise();
 	
-	void makeSomeNoise(Array_2D<float>& map, int zz);
+	void makeSomeNoise(color_map& image, int zz);
 	
 	//getters/setters
 	void setDistanceFunction(std::string dis);
-	void setEquation(std::string func);
 	void setMinkowski(float coefficient);
 	
 	int getXgrid();
