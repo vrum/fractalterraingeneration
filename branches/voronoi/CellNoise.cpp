@@ -1,6 +1,4 @@
 #include "CellNoise.h"
-#include "sortedList.h"
-#include "equation.h"
 #include <cfloat>
 #include <iostream>
 #include <cstdlib>
@@ -28,7 +26,6 @@ void CellNoise::construct(unsigned Xgrid, unsigned Ygrid, unsigned Zgrid, unsign
 	buckets_z = (zgrid / bucket_size) + 2;
 	
 	distanceFunction = &CellNoise::euclideanSquared;
-	eq = new equation("F1");
 	minkowski_coefficient = 4.0f;
 	
 	buckets = new vector<location>**[buckets_x];
@@ -58,6 +55,10 @@ void CellNoise::construct(unsigned Xgrid, unsigned Ygrid, unsigned Zgrid, unsign
 		loc.x = l + float(x);
 		loc.y = m + float(y);
 		loc.z = n + float(z);
+
+		int randle = rand();
+
+		loc.col = color(byte(randle & 255), byte((randle >> 8) & 255), byte((randle >> 16) & 255) );
 		
 		buckets[x][y][z].push_back(loc);
 	}
@@ -112,29 +113,27 @@ CellNoise::~CellNoise()
 	}
 	
 	delete[] buckets;
-	
-	delete eq;
 }
 
-void CellNoise::makeSomeNoise(Array_2D<float>& map, int zz)
+void CellNoise::makeSomeNoise(color_map& image, int zz)
 {
-//set up some variables
+	//set up some variables
 	int	i,j,k,//iterators
 		x,y,//location variables
 		bx,by,bz,//bucket indexes
-		mx=xgrid+bucket_size,
-		my=ygrid+bucket_size,
+		mx = xgrid + bucket_size,
+		my = ygrid + bucket_size,
 		z = zz + bucket_size;
 		
 	unsigned p;
+	location loc;
 	
-	float 	total,
-			temp_dis,
-			fx,fy,fz;
-			
-	sortedList F(eq->maxF());//this is where the different F's are stored. The higher the number, the more distances that are stored.
-	
-//get started
+	float 	temp_dis,
+			fx,fy,fz,
+			fClosest;
+	color cClosest;
+
+	//get started
 	for (x = bucket_size; x < mx; ++x)
 	{
 		for (y = bucket_size; y < my; ++y)
@@ -149,7 +148,8 @@ void CellNoise::makeSomeNoise(Array_2D<float>& map, int zz)
 			bz = int(fz);
 			
 			//clear out the old distance
-			F.clear();
+			fClosest = FLT_MAX;
+			cClosest = color(0,0,0);
 			
 			//check each of the points in the surrounding buckets
 			for (i = -1; i < 2; ++i)
@@ -160,17 +160,22 @@ void CellNoise::makeSomeNoise(Array_2D<float>& map, int zz)
 					{
 						for (p = 0; p < buckets[bx+i][by+j][bz+k].size(); ++p)
 						{
-							temp_dis = (this->*distanceFunction)(fx, fy, fz, buckets[bx+i][by+j][bz+k][p].x, buckets[bx+i][by+j][bz+k][p].y, buckets[bx+i][by+j][bz+k][p].z);
-							F += temp_dis;
+							//find the distance to this point
+							loc = buckets[bx+i][by+j][bz+k][p];
+							temp_dis = (this->*distanceFunction)(fx, fy, fz, loc.x, loc.y, loc.z);
+
+							//if this is the closest so far...
+							if (temp_dis < fClosest){
+								fClosest = temp_dis;
+								cClosest = loc.col;
+							}
 						}
 					}
 				}
 			}
 			
-			total = eq->evaluate(F);
-			
 			//now that we have the value, put it in
-			map(x - bucket_size, y - bucket_size) = total;
+			image(x - bucket_size, y - bucket_size) = cClosest;
 		}
 	}
 }
@@ -191,12 +196,6 @@ void CellNoise::setDistanceFunction(string dis)
 		distanceFunction = &CellNoise::minkowski;
 	else
 		cout << "Warning: distance function \'" << dis << "\' not recognized." << endl;
-}
-
-void CellNoise::setEquation(string func)
-{
-	delete eq;
-	eq = new equation(func);
 }
 
 void CellNoise::setMinkowski(float coefficient)
