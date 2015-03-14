@@ -1,0 +1,1 @@
+Here I test various algorithms to make a procedurally generated terrain. I investigate and implement a new algorithm, then compare and contrast it against the other algorithms. I will be implementing all of the algorithms in C++.
